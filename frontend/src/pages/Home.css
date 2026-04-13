@@ -1,0 +1,75 @@
+.home-container {
+  padding: 20px;
+}
+
+/* HEADER */
+.home-header {
+  margin-bottom: 20px;
+}
+
+/* TOP CARDS */
+.top-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* CARD */
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.center {
+  text-align: center;
+}
+
+/* STATUS */
+.status {
+  font-weight: bold;
+}
+
+.status.LIVE {
+  color: green;
+}
+
+.status.UPCOMING {
+  color: orange;
+}
+
+.status.ENDED {
+  color: red;
+}
+
+/* COUNTERS */
+.counter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.counter-card {
+  background: #f1f5f9;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.token {
+  font-size: 30px;
+  font-weight: bold;
+  color: #10b981;
+}
+
+.next {
+  font-size: 14px;
+  color: gray;
+}
+
+/* EMPTY */
+.empty {
+  text-align: center;
+  margin-top: 100px;
+}

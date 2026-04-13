@@ -1,0 +1,67 @@
+/* PAGE CENTER */
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+/* CARD */
+.register-card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 500px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+/* TITLE */
+.register-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* GRID */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+/* LABEL */
+label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* INPUT */
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* BUTTON */
+button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1d4ed8;
+}
+
+/* MESSAGE */
+.message {
+  margin-top: 15px;
+  text-align: center;
+  font-weight: bold;
+}

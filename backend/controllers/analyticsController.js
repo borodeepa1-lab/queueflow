@@ -18,12 +18,18 @@ exports.getAnalytics = async (req, res) => {
       [event_id]
     );
 
-   const [avg] = await db.promise().query(
-  `SELECT AVG(TIMESTAMPDIFF(MINUTE, qt.token_time, NOW())) AS avg_wait 
-   FROM queue_tokens qt 
-   WHERE qt.event_id = ?`,
-  [event_id]
-);
+    const [avg] = await db.promise().query(
+      `SELECT AVG(
+          CASE
+            WHEN qt.completed_time IS NOT NULL THEN TIMESTAMPDIFF(MINUTE, qt.token_time, qt.completed_time)
+            WHEN qt.called_time IS NOT NULL THEN TIMESTAMPDIFF(MINUTE, qt.token_time, qt.called_time)
+            ELSE NULL
+          END
+        ) AS avg_wait
+       FROM queue_tokens qt
+       WHERE qt.event_id = ?`,
+      [event_id]
+    );
 
     // Service distribution
     const [services] = await db.promise().query(

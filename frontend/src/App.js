@@ -1,39 +1,48 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-import Sidebar from "./components/Sidebar";
-
-import Home from "./pages/Home";
-import Events from "./pages/Events";
-import Register from "./pages/Register";
-import Students from "./pages/Students";
-import AdminDashboard from "./pages/AdminDashboard";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
+import SidebarShell from "./components/SidebarShell";
+import HomeScreen from "./pages/HomeScreen";
+import EventsScreen from "./pages/EventsScreen";
+import RegisterScreen from "./pages/RegisterScreen";
+import StudentsScreen from "./pages/StudentsScreen";
+import AdminHostPanel from "./pages/AdminHostPanel";
+import StaffLogin from "./pages/StaffLogin";
 import StaffPanel from "./pages/StaffPanel";
-import Login from "./pages/Login";
-import Help from "./pages/Help";
-
-import "./App.css";
+import HelpScreen from "./pages/HelpScreen";
+import { ToastProvider } from "./context/ToastContext";
+import "./AppShell.css";
 
 function App() {
-  return (
-    <Router>
-      <Sidebar />
+  useEffect(() => {
+    if (!sessionStorage.getItem("queueflow-session-started")) {
+      localStorage.removeItem("event_id");
+      sessionStorage.setItem("queueflow-session-started", "true");
+    }
+  }, []);
 
-      <div className="main">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/events" element={<Events />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/students" element={<Students />} />
-          <Route path="/admin" element={<AdminDashboard />} />
-          <Route path="/staff" element={<StaffPanel />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/help" element={<Help />} />
-        </Routes>
-      </div>
-    </Router>
+  return (
+    <ToastProvider>
+      <Router>
+        <div className="app-shell">
+          <SidebarShell />
+
+          <main className="app-main">
+            <Routes>
+              <Route path="/" element={<HomeScreen />} />
+              <Route path="/events" element={<EventsScreen />} />
+              <Route path="/register" element={<RegisterScreen />} />
+              <Route path="/students" element={<StudentsScreen />} />
+              <Route path="/admin" element={<AdminHostPanel />} />
+              <Route path="/staff-login" element={<StaffLogin />} />
+              <Route path="/staff" element={<StaffPanel />} />
+              <Route path="/login" element={<Navigate to="/admin" replace />} />
+              <Route path="/help" element={<HelpScreen />} />
+            </Routes>
+          </main>
+        </div>
+      </Router>
+    </ToastProvider>
   );
 }
 
 export default App;
-
